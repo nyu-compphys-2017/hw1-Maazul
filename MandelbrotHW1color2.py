@@ -1,7 +1,6 @@
-from __future__ import division         #To avoid problem with integer division
-from pylab import imshow,gray,show      #For density plot
-from numpy import empty                 #To define an empty array
-
+from __future__ import division        #To avoid problem with integer division
+from pylab import imshow,hot,show      #For density plot
+from numpy import empty,log            #To define an empty array
 
 N = 3000  #Grid size
 
@@ -22,13 +21,12 @@ for a in range(N):                      #Loop for real axis
             if abs(z)<=2:
                 z = z*z + c
             else:
-                Mand[b,a]=1             #Codes white if the abs(z) > 2
-        if abs(z)<=2:
-                Mand[b,a]=0             #Codes black if the abs(z) <= 2
+                Mand[b,a]=log(n)        #Codes the log of iterations for the abs(z) > 2
+                break
 
 #Store the Density Plot values from the 2D array Mand onto
 #a X:[-2,2] Y:[-2,2] graph
 imshow(Mand, origin="lower", extent=[-2,2,-2,2])
 
-gray()  #Plot color scheme: Gray scale
+hot()  #Plot color scheme
 show()  #Displays plot
